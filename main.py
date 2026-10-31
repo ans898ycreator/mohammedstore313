@@ -1,7 +1,15 @@
-from flask import Flask, render_template
+from flask import Flask, send_from_directory
+
 app = Flask(__name__)
+
 @app.route("/")
 def home():
-    return render_template("index.html")
-if __name__ == "__main__":
-    app.run(debug=True)
+    return send_from_directory(".", "index.html")
+
+@app.route("/style.css")
+def style():
+    return send_from_directory(".", "style.css")
+
+@app.route("/app.js")
+def script():
+    return send_from_directory(".", "app.js")
